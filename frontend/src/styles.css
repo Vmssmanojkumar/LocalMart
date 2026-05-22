@@ -1,0 +1,196 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+}
+
+:root {
+  --radius: 0.75rem;
+
+  /* ── Light Mode — clean white ecommerce ── */
+  --background: #FFFFFF;
+  --foreground: #111827;
+  --card: #FFFFFF;
+  --card-foreground: #111827;
+  --popover: #FFFFFF;
+  --popover-foreground: #111827;
+  --primary: #2563EB;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F3F4F6;
+  --secondary-foreground: #374151;
+  --muted: #F9FAFB;
+  --muted-foreground: #6B7280;
+  --accent: #EFF6FF;
+  --accent-foreground: #2563EB;
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
+  --border: #E5E7EB;
+  --input: #F9FAFB;
+  --ring: #2563EB;
+
+  --font-display: "Inter", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  --shadow-soft: 0 2px 8px 0 rgba(0,0,0,0.06), 0 1px 2px 0 rgba(0,0,0,0.04);
+  --shadow-card: 0 4px 20px 0 rgba(0,0,0,0.08), 0 1px 3px 0 rgba(0,0,0,0.05);
+  --shadow-hover: 0 12px 40px 0 rgba(0,0,0,0.12), 0 4px 8px 0 rgba(0,0,0,0.06);
+  --shadow-xl: 0 20px 60px 0 rgba(0,0,0,0.14);
+}
+
+.dark {
+  --background: #0F172A;
+  --foreground: #F1F5F9;
+  --card: #1E293B;
+  --card-foreground: #F1F5F9;
+  --popover: #1E293B;
+  --popover-foreground: #F1F5F9;
+  --primary: #3B82F6;
+  --primary-foreground: #FFFFFF;
+  --secondary: #334155;
+  --secondary-foreground: #CBD5E1;
+  --muted: #1E293B;
+  --muted-foreground: #94A3B8;
+  --accent: #1D3461;
+  --accent-foreground: #93C5FD;
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
+  --border: #334155;
+  --input: #1E293B;
+  --ring: #3B82F6;
+
+  --shadow-soft: 0 2px 8px 0 rgba(0,0,0,0.4);
+  --shadow-card: 0 4px 20px 0 rgba(0,0,0,0.5);
+  --shadow-hover: 0 12px 40px 0 rgba(0,0,0,0.6);
+}
+
+@layer base {
+  * { border-color: var(--color-border); box-sizing: border-box; }
+  html, body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    min-height: 100vh;
+  }
+}
+
+@layer utilities {
+  /* ── Cards ── */
+  .card {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-card);
+  }
+
+  /* ── Glass (kept for compat) ── */
+  .glass {
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.6);
+  }
+  .dark .glass {
+    background: rgba(30,41,59,0.8);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .shadow-soft  { box-shadow: var(--shadow-soft); }
+  .shadow-card  { box-shadow: var(--shadow-card); }
+  .shadow-hover { box-shadow: var(--shadow-hover); }
+  .shadow-xl-custom { box-shadow: var(--shadow-xl); }
+
+  /* ── Hero gradient — blue/purple premium ── */
+  .gradient-hero {
+    background: linear-gradient(135deg, #EFF6FF 0%, #F0F4FF 40%, #F5F0FF 100%);
+  }
+  .dark .gradient-hero {
+    background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 100%);
+  }
+
+  /* ── Category card gradients ── */
+  .cat-blue    { background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%); }
+  .cat-purple  { background: linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 100%); }
+  .cat-green   { background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%); }
+  .cat-orange  { background: linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%); }
+  .cat-red     { background: linear-gradient(135deg, #FEF2F2 0%, #FEE2E2 100%); }
+  .cat-yellow  { background: linear-gradient(135deg, #FEFCE8 0%, #FEF9C3 100%); }
+  .cat-pink    { background: linear-gradient(135deg, #FDF2F8 0%, #FCE7F3 100%); }
+  .cat-teal    { background: linear-gradient(135deg, #F0FDFA 0%, #CCFBF1 100%); }
+
+  /* ── Badge ── */
+  .badge-sale  { background: #EF4444; color: #fff; }
+  .badge-new   { background: #22C55E; color: #fff; }
+  .badge-hot   { background: #F59E0B; color: #fff; }
+  .badge-fast  { background: #2563EB; color: #fff; }
+
+  /* ── Text utilities ── */
+  .text-balance { text-wrap: balance; }
+
+  /* ── Animations ── */
+  @keyframes shimmer {
+    0%   { background-position: -800px 0; }
+    100% { background-position: 800px 0; }
+  }
+  .shimmer {
+    background: linear-gradient(90deg, #F3F4F6 25%, #E5E7EB 50%, #F3F4F6 75%);
+    background-size: 800px 100%;
+    animation: shimmer 1.5s infinite;
+  }
+  .dark .shimmer {
+    background: linear-gradient(90deg, #1E293B 25%, #334155 50%, #1E293B 75%);
+    background-size: 800px 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-10px); }
+  }
+  .float { animation: float 4s ease-in-out infinite; }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.5; }
+  }
+  .pulse-glow { animation: pulse-dot 2s ease-in-out infinite; }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .marquee {
+    animation: marquee 20s linear infinite;
+    display: flex;
+    width: max-content;
+  }
+}
