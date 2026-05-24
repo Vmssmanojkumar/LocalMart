@@ -29,5 +29,17 @@ export default defineConfig({
   server: {
     host: "::",
     port: 8080,
+  },
+  build: {
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            return "vendor";
+          }
+        },
+      },
+    },
   }
 });
