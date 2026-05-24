@@ -1,17 +1,13 @@
 import { defineConfig } from "vite";
+import viteReact from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import tsConfigPaths from "vite-tsconfig-paths";
-import { tanstackStart } from "@tanstack/react-start/plugin/vite";
-import viteReact from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [
+    viteReact(),
     tailwindcss(),
     tsConfigPaths({ projects: ["./tsconfig.json"] }),
-    tanstackStart({
-      server: { entry: "server" },
-    }),
-    viteReact(),
   ],
   resolve: {
     alias: {
@@ -31,7 +27,7 @@ export default defineConfig({
     port: 8080,
   },
   build: {
-    chunkSizeWarningLimit: 1000,
+    chunkSizeWarningLimit: 1200,
     rollupOptions: {
       output: {
         manualChunks(id) {
